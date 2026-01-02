@@ -3,27 +3,32 @@ let providers = [];
 window.onload = () => {
   Papa.parse("providers.csv", {
     download: true,
+    skipEmptyLines: true,
     header: true,
     complete: function(results) {
+      console.log("Loaded providers:", results.data);
       providers = results.data;
+    },
+    error: function(err) {
+      console.error("Papa Parse error:", err);
     }
   });
+
+  document.getElementById("searchBtn").addEventListener("click", searchExcel);
 };
 
-function searchProviders() {
-  const zip = document.getElementById("zipInput").value.trim();
-  if (!zip) {
-    alert("Please enter a ZIP code.");
-    return;
-  }
+function searchExcel() {
+    const lastName = document.getElementById("searchName").value.toLowerCase();
+    const specialty = document.getElementById("searchSpecialty").value.toLowerCase();
+    const ZIP = document.getElementById("searchZIP").value.toLowerCase();
 
-  // Filter providers by ZIP
-  let filtered = providers.filter(p => p.ZIP === zip);
+    const filtered = providers.filter(row => {
+        return (!lastName || String(row["Last Name"] || "").toLowerCase().includes(lastName)) &&
+               (!specialty || String(row["Specialty"] || "").toLowerCase().includes(specialty)) &&
+               (!ZIP || String(row["ZIP"] || "").toLowerCase().includes(ZIP));
+    });
 
-  // Sort alphabetically by last name
-  filtered.sort((a, b) => a["Last Name"].localeCompare(b["Last Name"]));
-
-  displayResults(filtered);
+    displayResults(filtered);
 }
 
 function displayResults(data) {
@@ -31,7 +36,7 @@ function displayResults(data) {
   container.innerHTML = "";
 
   if (data.length === 0) {
-    container.innerHTML = "<p>No providers found for that ZIP code.</p>";
+    container.innerHTML = "<p>No providers found.</p>";
     return;
   }
 
