@@ -10,10 +10,10 @@ window.onload = () => {
       providers = results.data;
     },
     error: function(err) {
-      console.error("Papa Parse error:", err);
+      console.error("Error reading list:", err);
     }
   });
-
+  document.getElementById("results").innerHTML = "Enter any information into the search bars and press search to filter through the list<br>of Tier 1 providers for the Riverside Medical Center employee benefit plan."
   document.getElementById("searchBtn").addEventListener("click", searchExcel);
 };
 
