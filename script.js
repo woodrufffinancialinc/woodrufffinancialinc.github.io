@@ -14,6 +14,7 @@ window.onload = () => {
     }
   });
   document.getElementById("results").innerHTML = "Enter any information into the search bars and press search to filter through the list<br>of Tier 1 providers for the Riverside Medical Center employee benefit plan."
+  document.getElementById("rhcemail").style.display = "none";
   document.getElementById("searchBtn").addEventListener("click", searchExcel);
 };
 
@@ -36,7 +37,8 @@ function displayResults(data) {
   container.innerHTML = "";
 
   if (data.length === 0) {
-    container.innerHTML = "<p>No providers found.</p>";
+    container.innerHTML = "<p>No providers found.<br><br>If you are unable to find a Tier 1 Provider for a needed service, you have the<br>ability to appeal to use a Tier 2 Provider and have Tier 1 benefits apply.<br>To start the appeal process, please email </p>";
+    document.getElementById("rhcemail").style.display = "inline";
     return;
   }
 
@@ -51,4 +53,5 @@ function displayResults(data) {
     `;
     container.appendChild(div);
   });
+  document.getElementById("rhcemail").style.display = "none";
 }
