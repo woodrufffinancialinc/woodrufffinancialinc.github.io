@@ -4,22 +4,43 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="styles.css">
   <title>Riverside Medical Group Provider Search</title>
-
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background-image: url(riverside.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    #page-container {
+      background-color: #fff;
+      max-width: 900px;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 10px 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+  </style>
 </head>
 <body>
-  <img src="logonobackground.png" id="logo" alt="Riverside Logo">
-  <p>Riverside Employee Benefit Plan Tier 1 Provider Listing</p>
+  <div id="page-container">
+    <div id="separator"></div>
+    <img src="logonobackground.png" id="logo" alt="Riverside Logo">
+    <p>Riverside Employee Benefit Plan Tier 1 Provider Listing</p>
 
-  <input type="text" id="searchName" placeholder="Last Name">
-  <input type="text" id="searchSpecialty" placeholder="Specialty">
-  <input type="text" id="searchZIP" placeholder="ZIP Code">
+    <input type="text" id="searchName" placeholder="Last Name">
+    <input type="text" id="searchSpecialty" placeholder="Specialty">
+    <input type="text" id="searchZIP" placeholder="ZIP Code">
 
-  <button id="searchBtn">Search</button>
+    <button id="searchBtn">Search</button>
 
-  <div id="results"></div>
+    <div id="results"></div>
+
+    <a href="mailto:HR-Benefits@rhc.net" id="rhcemail">HR-Benefits@rhc.net</a>
+  </div>
+
   <script src="script.js"></script>
-
-  <a href="mailto:HR-Benefits@rhc.net" id="rhcemail">HR-Benefits@rhc.net</a>
 </body>
 </html>
